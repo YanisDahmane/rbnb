@@ -1,0 +1,14 @@
+<h2>Mes locals</h2>
+<% @rooms.each do |room| %>
+  <%= render "room", room: room %>
+<% end %>
+
+<h2>Les reservations pour mes locaux</h2>
+<% @bookings_request.each do |book| %>
+  <%= render "booking", book: book %>
+<% end %>
+
+<h2>Mes reservations</h2>
+<% @bookings.each do |book| %>
+  <%= render "booking", book: book %>
+<% end %>
