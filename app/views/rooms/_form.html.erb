@@ -1,0 +1,10 @@
+<%= simple_form_for(@room) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :size %>
+  <%= f.association :category %>
+  <%= f.input :description %>
+  <%= f.association :address %>
+  <%= f.input :price %>
+  <%= f.input :image_url, as: :file %>
+  <%= f.submit %>
+<% end %>

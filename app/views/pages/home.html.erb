@@ -1,1 +1,5 @@
-prout
+<h1>My rooms</h1>
+<%= current_user ? current_user.email : "Pas connecté !" %>
+<% @rooms.each do |room| %>
+  <%= render "room", room: room %>
+<% end %>
