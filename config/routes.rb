@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   get "dashboard", to: "pages#dashboard"
+
+  get "/booking/:booking_id/confirm", to: "bookings#confirm", as: :confirm_booking
+  get "/booking/:booking_id/decline", to: "bookings#decline", as: :decline_booking
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
