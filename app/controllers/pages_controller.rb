@@ -6,6 +6,7 @@ class PagesController < ApplicationController
   def dashboard
     @rooms = current_user.rooms
     @bookings = current_user.bookings
-    @bookings_request = Booking.where(room: current_user.rooms)
+    @bookings_request = Booking.where(room: current_user.rooms, confirmed: [0,1])
+    p @bookings_request
   end
 end
