@@ -1,6 +1,6 @@
 <h1>My rooms</h1>
 <%= current_user ? current_user.email : "Pas connecté !" %>
-<div class="card-deck" style="display:flex">
+<div class="card-deck" style="display: flex; flex-wrap: wrap">
   <% @rooms.each do |room| %>
     <%= link_to room_path(room) do%>
       <%= render "room", room: room %>
