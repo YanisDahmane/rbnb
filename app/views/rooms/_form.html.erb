@@ -1,9 +1,15 @@
-<%= simple_form_for(@room) do |f| %>
+<%= simple_form_for @room do |f| %>
   <%= f.input :name %>
   <%= f.input :size %>
   <%= f.association :category %>
   <%= f.input :description %>
-  <%= f.association :address %>
+  <%= f.fields_for :address do |fa| %>
+    <%= fa.input :number %>
+    <%= fa.input :road %>
+    <%= fa.input :city %>
+    <%= fa.input :country, as: :string %>
+    <%= fa.input :zip_code %>
+  <% end %>
   <%= f.input :price %>
   <%= f.input :image_url, as: :file %>
   <%= f.submit %>
