@@ -29,6 +29,7 @@ class RoomsController < ApplicationController
                                  :address_id,
                                  :image_url,
                                  :price,
+                                 :photo,
                                   address_attributes: [
                                     :number,
                                     :road,
