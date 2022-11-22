@@ -27,7 +27,6 @@ class RoomsController < ApplicationController
                                  :category_id,
                                  :description,
                                  :address_id,
-                                 :image_url,
                                  :price,
                                  :photo,
                                   address_attributes: [
