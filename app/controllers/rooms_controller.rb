@@ -6,6 +6,7 @@ class RoomsController < ApplicationController
 
   def new
     @room = Room.new
+    @room.address = Address.new
   end
 
   def create
@@ -21,7 +22,21 @@ class RoomsController < ApplicationController
   private
 
   def room_params
-    params.require(:room).permit(:name, :size, :category_id, :description, :address_id, :image_url, :price)
+    params.require(:room).permit(:name,
+                                 :size,
+                                 :category_id,
+                                 :description,
+                                 :address_id,
+                                 :image_url,
+                                 :price,
+                                  address_attributes: [
+                                    :number,
+                                    :road,
+                                    :city,
+                                    :country,
+                                    :zip_code
+                                  ]
+                                )
   end
 
   def set_room
