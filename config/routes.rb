@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  get "/api/:id", to: "api#rooms", as: :room_api
+  get "/api", to: "api#all", as: :rooms_api
+
   resources :rooms, only: %i[show new create] do
     resources :address, only: %i[new]
   end

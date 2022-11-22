@@ -28,4 +28,11 @@ class BookingsController < ApplicationController
   def booking_params
     params.require(:booking).permit(:start_date, :end_date, :room_id, :user_id)
   end
+
+  def disponible?(room, start_date, end_date)
+    room.bookings.each do |booking|
+      return false if booking.start_date <= end_date && booking.end_date >= start_date
+    end
+    return true
+  end
 end
