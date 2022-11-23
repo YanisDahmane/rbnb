@@ -7,14 +7,13 @@ export default class extends Controller {
   static allRoomApi;
 
   connect() {
+    console.log("ok");
     fetch("http://localhost:3000/api")
       .then(response => response.json()
       .then(data => {this.allRoomdata = data}));
   }
 
   find(event){
-    console.log(event.target.value);
-    console.log(this.allRoomdata);
     this.deckTarget.innerHTML = "";
     for (const [key, value] of Object.entries(this.allRoomdata)) {
       const fullinfo = value["info"]["name"] + value["info"]["description"] + value["category"] + value["address"]["city"] + value["address"]["country"];
