@@ -1,5 +1,5 @@
-require 'Faker'
-require 'JSON'
+require 'fake'
+require 'json'
 require 'open-uri'
 
 @number_creation = 50
@@ -72,7 +72,7 @@ puts @g_categories
 end
 # Creating template
 p "Rooms created!"
-@number_creation.times do
-  Booking.create!(room_id: @g_rooms.sample.id, start_date: Date.today, end_date: Date.today + 1, user_id: @u1.id)
+(@number_creation * 3).times do
+  Booking.create!(room_id: @g_rooms.sample.id, start_date: Date.today, end_date: Date.today + 1, user_id: @g_users.sample.id)
 end
 p "Rooms created!"
