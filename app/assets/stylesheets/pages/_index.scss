@@ -1,2 +1,38 @@
 // Import page-specific CSS files here.
 @import "home";
+
+body {
+  font-family: "Nunito",
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.dashboard-container {
+  margin-top: 32px;
+  box-shadow: 2px 2px 2px 1px rgba  (0, 0, 0, 0.03);
+  padding: 24px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  color: #212f45;
+  font-weight: bolder;
+  text-align: center;
+  gap: 16px;
+}
+
+.dashboard-container > h2 {
+  font-size: xx-large;
+  font-weight: 600;
+  font-family: 'Nunito';
+}
+
+
+.container > h1 {
+  text-align: center;
+  margin-top: 32px;
+  font-weight: 600;
+
+}

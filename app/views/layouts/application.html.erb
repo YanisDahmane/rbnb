@@ -13,6 +13,13 @@
 
   <body>
     <%= render "shared/navbar" %>
+    <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url(<%= asset_path('banner.jpg') %>);">
+      <div class="container">
+        <h1>Rentacare allows <strong data-controller="banner"></strong> to <strong>rent an office</strong>!</h1>
+        <p>Ease your working life, find places available for your activity.</p>
+      </div>
+    </div>
     <%= yield %>
+
   </body>
 </html>

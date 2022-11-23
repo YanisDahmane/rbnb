@@ -1,8 +1,14 @@
+
 <%= link_to room_path(room) do%>
-<div class="card" style="margin:8px; width: 256px">
+  <div class="card-room">
   <img class="card-img-top" src="<%= room.photo.attached? ? cl_image_path(room.photo.key, height: 300, width: 400, crop: :fill) : asset_path('cabinet-medical.webp')%>" alt="">
-  <div class="card-body">
-    <h5 class="card-title"><%= room.name %></h5>
+    <div class="card-room-infos">
+      <div>
+      <h5 class="card-title"><%= room.name %></h5>
+        <p><%= room.description %></p>
+      </div>
+      <h2 class="card-room-pricing"><%= room.price %>€/jour</h2>
+      <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+    </div>
   </div>
-</div>
 <%end%>
