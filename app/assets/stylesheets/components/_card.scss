@@ -10,16 +10,70 @@
   width: 100%;
   border: 1px solid #00000033;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.37);
+  border-radius: 8px;
 }
 
 .booking-card-content {
-  margin : 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 30px;
 }
 
-.btn-light {
-  border: 1px solid black;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+.card-room {
+  width: 28vw;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin-top: 16px;
+  text-decoration: none;
+  border-radius: 8px;
 }
+
+.card-room > img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-room h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-room p {
+  font-size: 12px;
+  opacity: .7;
+  margin: 0;
+}
+
+
+.card-room .card-room-infos {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  color: black;
+}
+
+.card-room-infos .card-room-user {
+  position: absolute;
+  right: 16px;
+  top: -20px;
+  width: 40px;
+}
+
+.card-deck {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 100v;
+  justify-content: center;
+  gap: 16px;
+}
+
 
 #map {
   height: 300px;
