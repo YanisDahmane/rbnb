@@ -1,5 +1,5 @@
-require 'Faker'
-require 'JSON'
+require 'faker'
+require 'json'
 require 'open-uri'
 
 @number_creation = 50
