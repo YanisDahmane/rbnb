@@ -1,10 +1,35 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+require 'Faker'
+require 'JSON'
+require 'open-uri'
+
+@number_creation = 50
+
+@all_categories = %w[Dentist Doctor Nurse Psychologist Chiropractor]
+
+@g_users = []
+@g_categories = []
+@g_address = []
+@g_rooms = []
+
+
+## Utils
+def generate()
+  name = Faker::Name.name
+  result = JSON.load(URI("https://api-adresse.data.gouv.fr/search/?q=#{name}+France"))
+  if(result["features"].size > 1)
+    r = {}
+    r[:number] = result["features"][0]["properties"]["context"].split(",")[0]
+    r[:road] = result["features"][0]["properties"]["name"]
+    r[:city] = result["features"][0]["properties"]["city"]
+    r[:country] = "France"
+    r[:zip_code] = result["features"][0]["properties"]["postcode"]
+    return r
+  end
+    generate()
+end
+
+## Seeds
+
 p "Resetting database..."
 Booking.destroy_all
 Room.destroy_all
@@ -12,41 +37,42 @@ Category.destroy_all
 Address.destroy_all
 User.destroy_all
 p "Database reset!"
-p "Creating users..."
-u1 = User.create!(email: "yanis@gmail.com", password: "password")
+
+p "Creating (yanis|samuel|johan) users..."
+@u1 = User.create!(email: "yanis@gmail.com", password: "password")
 u2 = User.create!(email: "samuel@gmail.com", password: "password")
 u3 = User.create!(email: "johan@gmail.com", password: "password")
 p "Users created!"
-p "Creating address"
-a1 = Address.create!(number: 20, road:"Rue des capucins", city:"Lyon", country: "France", zip_code: 69001)
-a2 = Address.create!(number: 2, road:"rue professeur joseph renault", city:"Lyon", country: "France", zip_code: 69008)
-a3 = Address.create!(number: 127, road:"chemin des plans", city:"Saint Just", country: "France", zip_code: 01250)
-p "Address created!"
-p "Creating categories"
-c1 = Category.create!(name: "Dentiste")
-c2 = Category.create!(name: "Medecin")
-c3 = Category.create!(name: "Infirmier")
-c4 = Category.create!(name: "Psychologue")
-c5 = Category.create!(name: "Kinésithérapeute")
-p "Categories created!"
-p "Creating rooms"
-r1 = Room.create!(name: "Salle 1", size: 4, category_id: c1.id, description: "Salle de dentiste", user_id: u1.id, address_id: a1.id, price: 100, image_url: "https://imgs.search.brave.com/StHfZAw2yEtJ1AIQrVvNrN2qEy78AsGO5VXMXPTWdcA/rs:fit:1200:1200:1/g:ce/aHR0cDovL3d3dy5m/cmFuY29pc2V2b2dl/bGVlci5jb20vd3At/Y29udGVudC91cGxv/YWRzLzIwMjAvMDYv/MjYyLVRlcnZ1ZXJl/bi0xMDctc2NhbGVk/LmpwZw")
-r2 = Room.create!(name: "Salle 2", size: 666, category_id: c2.id, description: "Salle de medecin", user_id: u2.id, address_id: a2.id, price: 200, image_url: "https://imgs.search.brave.com/StHfZAw2yEtJ1AIQrVvNrN2qEy78AsGO5VXMXPTWdcA/rs:fit:1200:1200:1/g:ce/aHR0cDovL3d3dy5m/cmFuY29pc2V2b2dl/bGVlci5jb20vd3At/Y29udGVudC91cGxv/YWRzLzIwMjAvMDYv/MjYyLVRlcnZ1ZXJl/bi0xMDctc2NhbGVk/LmpwZw")
-r3 = Room.create!(name: "Salle 3", size: 26, category_id: c3.id, description: "Salle d'infirmier", user_id: u3.id, address_id: a3.id, price: 300, image_url: "https://imgs.search.brave.com/StHfZAw2yEtJ1AIQrVvNrN2qEy78AsGO5VXMXPTWdcA/rs:fit:1200:1200:1/g:ce/aHR0cDovL3d3dy5m/cmFuY29pc2V2b2dl/bGVlci5jb20vd3At/Y29udGVudC91cGxv/YWRzLzIwMjAvMDYv/MjYyLVRlcnZ1ZXJl/bi0xMDctc2NhbGVk/LmpwZw")
-r4 = Room.create!(name: "Salle 4", size: 66, category_id: c4.id, description: "Salle de psychologue", user_id: u1.id, address_id: a1.id, price: 400, image_url: "https://imgs.search.brave.com/StHfZAw2yEtJ1AIQrVvNrN2qEy78AsGO5VXMXPTWdcA/rs:fit:1200:1200:1/g:ce/aHR0cDovL3d3dy5m/cmFuY29pc2V2b2dl/bGVlci5jb20vd3At/Y29udGVudC91cGxv/YWRzLzIwMjAvMDYv/MjYyLVRlcnZ1ZXJl/bi0xMDctc2NhbGVk/LmpwZw")
-r5 = Room.create!(name: "Salle 5", size: 166, category_id: c5.id, description: "Salle de kinésithérapeute", user_id: u2.id, address_id: a2.id, price: 500, image_url: "https://imgs.search.brave.com/StHfZAw2yEtJ1AIQrVvNrN2qEy78AsGO5VXMXPTWdcA/rs:fit:1200:1200:1/g:ce/aHR0cDovL3d3dy5m/cmFuY29pc2V2b2dl/bGVlci5jb20vd3At/Y29udGVudC91cGxv/YWRzLzIwMjAvMDYv/MjYyLVRlcnZ1ZXJl/bi0xMDctc2NhbGVk/LmpwZw")
 
-# Creating template
-
-(1..10).each do |i|
-  template = Room.create!(name: "Salle template: #{i}", size: i*10, category_id: c5.id, description: "Salle template numéro #{i} de kinésithérapeute", user_id: u2.id, address_id: a2.id, price: 500 + i, image_url: "https://imgs.search.brave.com/StHfZAw2yEtJ1AIQrVvNrN2qEy78AsGO5VXMXPTWdcA/rs:fit:1200:1200:1/g:ce/aHR0cDovL3d3dy5m/cmFuY29pc2V2b2dl/bGVlci5jb20vd3At/Y29udGVudC91cGxv/YWRzLzIwMjAvMDYv/MjYyLVRlcnZ1ZXJl/bi0xMDctc2NhbGVk/LmpwZw")
+p "Creating #{@number_creation} other users..."
+@number_creation.times do
+  @g_users << User.create!(email: Faker::Internet.email, password: "password")
 end
 
+p "Creating #{@number_creation} address..."
+@number_creation.times do
+  @g_address << Address.create!(generate)
+end
+
+p "Creating #{@all_categories.size} categories..."
+
+@all_categories.each do |category|
+  @g_categories << Category.create!(name: category)
+end
+p "Categories created!"
+
+p "Creating #{@number_creation} rooms"
+
+puts @g_users
+puts @g_address
+puts @g_categories
+
+@number_creation.times do
+  @g_rooms << Room.create!(name: Faker::Lorem.word, size: rand(1..100), category: @g_categories.sample, description: Faker::Lorem.paragraph, user_id: @g_users.sample.id, address_id: @g_address.sample.id, price: rand(1..1000), image_url: Faker::Avatar.image)
+end
+# Creating template
 p "Rooms created!"
-Booking.create!(start_date: Date.today, end_date: Date.today + 1, room_id: r1.id, user_id: u2.id)
-Booking.create!(start_date: Date.today + 4, end_date: Date.today + 10, room_id: r1.id, user_id: u2.id)
-Booking.create!(start_date: Date.today, end_date: Date.today + 1, room_id: r2.id, user_id: u3.id)
-Booking.create!(start_date: Date.today, end_date: Date.today + 1, room_id: r3.id, user_id: u1.id)
-Booking.create!(start_date: Date.today, end_date: Date.today + 1, room_id: r4.id, user_id: u2.id)
-Booking.create!(start_date: Date.today, end_date: Date.today + 1, room_id: r5.id, user_id: u3.id)
-p "Bookings created!"
+@number_creation.times do
+  Booking.create!(room_id: @g_rooms.sample.id, start_date: Date.today, end_date: Date.today + 1, user_id: @u1.id)
+end
+p "Rooms created!"

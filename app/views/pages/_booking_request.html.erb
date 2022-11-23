@@ -1,10 +1,13 @@
-<div class="card" style="margin:8px">
-  <div class="card-body">
-    <h5 class="card-title"><%= book.room.name %></h5>
-    <p class="card-text">Du <%= book.start_date %> au <%= book.end_date %></p>
-  </div>
-  <div class="card-footer">
-    <small class="text-muted">
+<div class="card-room">
+  <img class="card-img-top" src="<%= book.room.image_url %>" alt="Card image cap">
+  <div class="card-room-infos">
+    <div>
+      <h5 class="card-title"><%= book.room.name %></h5>
+      <p class="card-text">Du <%= book.start_date %> au <%= book.end_date %></p>
+    </div>
+    <h2 class="card-room-pricing"><%= book.room.price %>€</h2>
+    <div class="card-footer">
+      <small class="text-muted">
       <% if book.confirmed == 0 %>
         <div>
           <%= link_to "Accepter", confirm_booking_path(book.id), class: "btn btn-success"%>
@@ -14,5 +17,6 @@
         Validé
       <% end %>
     </small>
+    </div>
   </div>
 </div>

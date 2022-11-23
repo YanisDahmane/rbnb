@@ -5,12 +5,16 @@
   </div>
 </div>
 
-  <%= render "search_bar"%>
+<div data-controller="search">
+  <%= render "search_bar", categorys: @categorys%>
+ </div>
 
+<div class="container">
   <h1>Browse Rooms</h1>
-  <div data-search-target="deck" class="card-deck" style="display: flex; flex-wrap: wrap; min-height: 100vh">
+  <div data-search-target="deck" class="card-deck">
     <% @rooms.each do |room| %>
       <%= render "room", room: room %>
     <% end %>
   </div>
 </div>
+

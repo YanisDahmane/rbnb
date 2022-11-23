@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   def home
     @rooms = Room.all
+    @categorys = Category.all
   end
 
   def dashboard
