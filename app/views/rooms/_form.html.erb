@@ -1,16 +1,16 @@
 <%= simple_form_for @room do |f| %>
-  <%= f.input :name %>
-  <%= f.input :size %>
+  <%= f.input :name, placeholder: "Dr Quinn's Office" %>
+  <%= f.input :size, placeholder: "0 m²" %>
   <%= f.association :category %>
-  <%= f.input :description %>
+  <%= f.input :description, placeholder: "Equipment, accessibility, specificities ..." %>
   <%= f.fields_for :address do |fa| %>
-    <%= fa.input :number %>
-    <%= fa.input :road %>
-    <%= fa.input :city %>
-    <%= fa.input :country, as: :string %>
-    <%= fa.input :zip_code %>
+    <%= fa.input :number, placeholder: "9 3/4" %>
+    <%= fa.input :road, placeholder: "Abbey Road" %>
+    <%= fa.input :city, placeholder: "Sydney" %>
+    <%= fa.input :country, as: :string, placeholder: "Japan" %>
+    <%= fa.input :zip_code, placeholder: "#####" %>
   <% end %>
-  <%= f.input :price %>
+  <%= f.input :price, placeholder: "~ €" %>
   <%= f.input :photo, as: :file %>
   <%= f.submit %>
 <% end %>
