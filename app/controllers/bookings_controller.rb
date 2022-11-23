@@ -1,14 +1,24 @@
 class BookingsController < ApplicationController
   def index
-    # @bookings = Booking.all
+    @bookings = Booking.all
   end
 
   def new
+    @room = Room.find(params[:room_id])
     @booking = Booking.new
   end
 
   def create
-    @booking = @booking.new(booking_params)
+    @booking = Booking.new(booking_params)
+    @room = Room.find(params[:room_id])
+    @booking.user = current_user
+    @booking.room = @room
+    if disponible?(@room, @booking.start_date, @booking.end_date)
+      @booking.save
+      redirect_to dashboard_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def confirm
@@ -26,13 +36,14 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :room_id, :user_id)
+    params.require(:booking).permit(:start_date, :end_date, :room_id)
   end
 
-  def disponible?(room, start_date, end_date)
-    room.bookings.each do |booking|
-      return false if booking.start_date <= end_date && booking.end_date >= start_date
+  def disponible?
+    @bookings = Booking.where(room_id: params[:room_id])
+    @bookings.each do |booking|
+      return false if booking.start_date <= params[:start_date] && booking.end_date >= params[:end_date]
     end
-    return true
+    true
   end
 end

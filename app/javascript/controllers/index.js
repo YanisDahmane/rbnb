@@ -11,4 +11,7 @@ import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
 import RoomsController from "./rooms_controller"
+import SearchController from "./search_controller"
+
 application.register("rooms", RoomsController)
+application.register("search", SearchController)
