@@ -1,25 +1,23 @@
 <!-- voir a quoi sert le remote true-->
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css" rel="stylesheet">
 <div data-controller="rooms" data-rooms-url-value="<%= room_api_path(@room) %>">
-<%= link_to "Back home", root_path, remote:true, class: "btn btn-primary"%>
 
+
+<div class="container">
 <h1><%= @room.name %></h1>
+  <div class="booking-card">
+    <img class="card-img-top" src="<%= @room.photo.attached? ? cl_image_path(@room.photo.key, height: 300, width: 400, crop: :fill) : asset_path('cabinet-medical.webp')%>" alt="">
+    <div class="booking-card-content">
+      <p> Superficie : <%= @room.size %>m2</p>
+      <p> Categorie : <%= @room.category.name %></p>
+      <p> Prix : <%= @room.price %>€</p>
+      <p> Description : <%= @room.description %></p>
+      <%= link_to 'Book for one hour or more', new_room_booking_path(@room), class:"btn btn-light"  %>
+    </div>
+  </div>
 
-<div style="background-color: #FAE1DF; margin: 8px; border-radius: 8px, d-flex flex-wrap ;width: 30%">
-  <h2>Name : <%= @room.name %></h2>
-  <p>Size : <%= @room.size %>m2</p>
-  <p>Category : <%= @room.category.name %></p>
-  <p>Price : <%= @room.price %></p>
-  <p>Description : <%= @room.description %></p>
-  <!-- mettre un carroussel d'image dans le show des rooms / plusieurs images a charger depuis cloudinary-->
-  <img class="card-img-top" src="<%= @room.photo.attached? ? cl_image_path(@room.photo.key, height: 300, width: 400, crop: :fill) : asset_path('cabinet-medical.webp')%>" alt="">
+  <div id="map">
+                <!-- Display the map in this div -->
+  </div>
+
 </div>
-
-<%= link_to 'Reserver', new_room_booking_path(@room)  %>
-
-
-
-
-<div id="map" style="height: 300px; width: 600px">
-              <!-- Display the map in this div -->
- </div>
