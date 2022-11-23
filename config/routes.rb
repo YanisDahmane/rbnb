@@ -16,5 +16,6 @@ Rails.application.routes.draw do
 
   resources :rooms, only: %i[show new create] do
     resources :address, only: %i[new]
+    resources :bookings, only: %i[new create]
   end
 end

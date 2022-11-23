@@ -2,6 +2,8 @@ class RoomsController < ApplicationController
   before_action :set_room, only: %i[show edit update destroy]
 
   def show
+    @booking = Booking.new
+    # @room.booking = @booking
   end
 
   def new
