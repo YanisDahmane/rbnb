@@ -28,11 +28,6 @@ c2 = Category.create!(name: "Medecin")
 c3 = Category.create!(name: "Infirmier")
 c4 = Category.create!(name: "Psychologue")
 c5 = Category.create!(name: "Kinésithérapeute")
-Category.create!(name: "Orthophoniste")
-Category.create!(name: "Ostéopathe")
-Category.create!(name: "Pédicure-podologue")
-Category.create!(name: "Sage-femme")
-Category.create!(name: "Psychomotricien")
 p "Categories created!"
 p "Creating rooms"
 r1 = Room.create!(name: "Salle 1", size: 4, category_id: c1.id, description: "Salle de dentiste", user_id: u1.id, address_id: a1.id, price: 100, image_url: "https://imgs.search.brave.com/StHfZAw2yEtJ1AIQrVvNrN2qEy78AsGO5VXMXPTWdcA/rs:fit:1200:1200:1/g:ce/aHR0cDovL3d3dy5m/cmFuY29pc2V2b2dl/bGVlci5jb20vd3At/Y29udGVudC91cGxv/YWRzLzIwMjAvMDYv/MjYyLVRlcnZ1ZXJl/bi0xMDctc2NhbGVk/LmpwZw")
