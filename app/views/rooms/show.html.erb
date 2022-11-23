@@ -5,7 +5,7 @@
 
 <h1><%= @room.name %></h1>
 
-<div style="background-color: #FAE1DF; margin: 8px; border-radius: 8px, d-flex flex-wrap">
+<div style="background-color: #FAE1DF; margin: 8px; border-radius: 8px, d-flex flex-wrap ;width: 30%">
   <h2>Name : <%= @room.name %></h2>
   <p>Size : <%= @room.size %>m2</p>
   <p>Category : <%= @room.category.name %></p>
@@ -14,6 +14,11 @@
   <!-- mettre un carroussel d'image dans le show des rooms / plusieurs images a charger depuis cloudinary-->
   <img class="card-img-top" src="<%= @room.photo.attached? ? cl_image_path(@room.photo.key, height: 300, width: 400, crop: :fill) : asset_path('cabinet-medical.webp')%>" alt="">
 </div>
+
+<%= link_to 'Reserver', new_room_booking_path(@room)  %>
+
+
+
 
 <div id="map" style="height: 300px; width: 600px">
               <!-- Display the map in this div -->
