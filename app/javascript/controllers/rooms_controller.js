@@ -10,14 +10,8 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log("Hello from Stimulus!");
-    // this.fetchInfoRoom()
-
-    const test = {toto: 'titi', tutu: 'tata'};
-
-    test.forEach
-
-
+    console.log("Hello from Stimdulus!");
+    this.fetchInfoRoom();
   }
 
   showMap(data) {

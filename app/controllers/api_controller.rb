@@ -7,7 +7,20 @@ class ApiController < ApplicationController
     render json: create_all_json
   end
 
+  def category
+    render json: category_json
+  end
+
   private
+
+  def category_json
+    @result = {}
+    @categories = Category.all
+    @categories.each do |category|
+      @result[category.id] = category.name
+    end
+    @result
+  end
 
   def create_room_json
     @room = Room.find(params[:id])
