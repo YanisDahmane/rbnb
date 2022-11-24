@@ -4,7 +4,7 @@
 
 
 <div class="container">
-<h1><%= @room.name %></h1>
+<h1 class="title"><%= @room.name %></h1>
   <div class="booking-card">
     <img class="booking-card-img " src="<%= @room.photo.attached? ? cl_image_path(@room.photo.key, height: 300, width: 400, crop: :fill) : @room.image_url%>" alt="">
     <div class="booking-card-content">
