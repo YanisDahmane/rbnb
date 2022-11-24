@@ -6,6 +6,7 @@ class RoomsController < ApplicationController
 
   def show
     @booking = Booking.new
+    @user = current_user
     # @room.booking = @booking
   end
 

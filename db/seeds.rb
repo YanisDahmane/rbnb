@@ -2,7 +2,7 @@ require 'faker'
 require 'json'
 require 'open-uri'
 
-@number_creation = 50
+@number_creation = 100
 
 @all_categories = %w[Dentist Doctor Nurse Psychologist Chiropractor]
 
@@ -31,9 +31,11 @@ def generate()
 end
 
 def getRandImage()
-  url = "https://www.bing.com/images/search?sp=-1&ghc=1&pq=cabinet+medical+jolie&sc=10-21&cvid=B513604FEC5E43928AEDF3A00547B903&ghsh=0&ghacc=0&tsc=ImageHoverTitle&cw=1440&ch=793&q=cabinet+medical+jolie&qft=+filterui:photo-photo+filterui:imagesize-wallpaper&form=IRFLTR&first=1"
+  url = "https://www.bing.com/images/search?sp=-1&ghc=1&pq=cabinet+medical+jolie&sc=10-21&cvid=B513604FEC5E43928AEDF3A00547B903&ghsh=0&ghacc=0&tsc=ImageHoverTitle&cw=1440&ch=793&q=cabinet+medical+jolie&qft=+filterui:imagesize-custom_1920_1080&form=IRFLTR&first=1"
   doc = Nokogiri::HTML(URI.open(url))
-  doc.css('img').select { |link| link['src'].nil? == false && link['src'].include?("https://") }.map { |link| link['src'] }.sample
+  img = doc.css('img').select { |link| link['src'].nil? == false && link['src'].include?("https://") }.map { |link| link['src'] }.sample
+  img.gsub!("w=", "")
+  img.gsub!("h=", "")
 end
 
 ## Seeds
@@ -46,22 +48,6 @@ Address.destroy_all
 User.destroy_all
 p "Database reset!"
 
-p "Creating (yanis|samuel|johan) users..."
-@u1 = User.create!(email: "yanis@gmail.com", password: "password")
-u2 = User.create!(email: "samuel@gmail.com", password: "password")
-u3 = User.create!(email: "johan@gmail.com", password: "password")
-p "Users created!"
-
-p "Creating #{@number_creation} other users..."
-@number_creation.times do
-  @g_users << User.create!(email: Faker::Internet.email, password: "password")
-end
-
-p "Creating #{@number_creation} address..."
-@number_creation.times do
-  @g_address << Address.create!(generate)
-end
-
 p "Creating #{@all_categories.size} categories..."
 
 @all_categories.each do |category|
@@ -69,28 +55,57 @@ p "Creating #{@all_categories.size} categories..."
 end
 p "Categories created!"
 
-p "Creating #{@number_creation} rooms"
+@admin = { yanis: {}, samuel: {}, johan: {} }
+@all_rooms = []
+p "[Admin] Admin with template"
+@admin.each do |key, value|
+  value[:user] = User.create!(email: "#{key}@gmail.com", password: "password")
+  value[:address] = Address.create!(generate)
 
-puts @g_users
-puts @g_address
-puts @g_categories
+  value[:room] = Room.create!(name: Faker::Artist.name, size: rand(1..100), category: @g_categories.sample,
+                           description: Faker::Lorem.paragraph, user_id: value[:user].id, address_id: value[:address].id,
+                           price: rand(1..1000), image_url: getRandImage
+  )
+  @all_rooms << value[:room]
+end
 
+@admin.each_with_index do |(key, value), index|
+  value[:booking] = Booking.create!(user_id: value[:user].id, room_id: @all_rooms[index - 1].id, start_date: Date.today, end_date: Date.today + rand(1..10))
+end
+
+p "[Admin] Admin created!"
+
+
+p "Creating #{@number_creation} other users..."
 @number_creation.times do
-  image_url = getRandImage
+  @g_users << User.create!(email: Faker::Internet.email, password: "password")
+  p "Creating user #{@g_users.size} / #{@number_creation}..."
+end
+
+p "Creating #{@number_creation} address..."
+@number_creation.times do
+  @g_address << Address.create!(generate)
+  p "Creating address #{@g_address.size} / #{@number_creation}..."
+end
+
+p "Creating #{@number_creation} rooms"
+@g_address.each do
   @g_rooms << Room.create!(
-    name: Faker::Lorem.word,
+    name: Faker::Artist.name,
     size: rand(1..100),
     category: @g_categories.sample,
     description: Faker::Lorem.paragraph,
     user_id: @g_users.sample.id,
     address_id: @g_address.sample.id,
     price: rand(1..1000),
-    image_url: image_url
+    image_url: getRandImage
   )
+  p "Creating room #{@g_rooms.size} / #{@number_creation}..."
 end
 # Creating template
 p "Rooms created!"
-@number_creation.times do
-  Booking.create!(room_id: @g_rooms.sample.id, start_date: Date.today, end_date: Date.today + 1, user_id: @u1.id)
+@g_rooms.each do
+  Booking.create!(room_id: @g_rooms.sample.id, start_date: Date.today, end_date: Date.today + 1, user_id: @g_users.sample.id)
+  p "Creating booking #{@g_rooms.size} / #{@number_creation}..."
 end
 p "Rooms created!"

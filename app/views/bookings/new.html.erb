@@ -4,9 +4,9 @@
 
 
 <div class="booking">
-  <%= simple_form_for [@room, @booking] do |f| %>
-    <%= f.input :start_date, as: :date %>
-    <%= f.input :end_date, as: :date %>
+  <%= simple_form_for [@room, @booking], html: { data: { controller: 'flatpickr', flatpickr_url_value: room_api_path(@room)} } do |f| %>
+  <%= f.input :start_date, as: :string, input_html: { data: { flatpickr_target: "startTime" } } %>
+  <%= f.input :end_date, as: :string, input_html: { data: { flatpickr_target: "endTime" }, id: 'end_time' } %>
     <%= f.submit %>
   <% end %>
 </div>
