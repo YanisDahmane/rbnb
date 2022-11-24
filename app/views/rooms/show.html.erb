@@ -1,23 +1,26 @@
 <!-- voir a quoi sert le remote true-->
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css" rel="stylesheet">
 <div data-controller="rooms" data-rooms-url-value="<%= room_api_path(@room) %>">
-
-
-<div class="container">
-<h1><%= @room.name %></h1>
-  <div class="booking-card">
-    <img class="card-img-top" src="<%= @room.photo.attached? ? cl_image_path(@room.photo.key, height: 300, width: 400, crop: :fill) : @room.image_url%>" alt="">
-    <div class="booking-card-content">
-      <p> Superficie : <%= @room.size %>m2</p>
-      <p> Categorie : <%= @room.category.name %></p>
-      <p> Prix : <%= @room.price %>€</p>
-      <p> Description : <%= @room.description %></p>
-      <%= link_to 'Book for one hour or more', new_room_booking_path(@room), class:"btn btn-light"  %>
-    </div>
-  </div>
-
-  <div id="map">
-                <!-- Display the map in this div -->
-  </div>
-
+  <div class="container">
+    <h1><%= @room.name %></h1>
+      <div class="booking-card">
+        <img class="card-img-top" src="<%= @room.photo.attached? ? cl_image_path(@room.photo.key, height: 300, width: 400, crop: :fill) : @room.image_url%>" alt="">
+        <div class="booking-card-content">
+          <p> Superficie : <%= @room.size %>m2</p>
+          <p> Categorie : <%= @room.category.name %></p>
+          <p> Prix : <%= @room.price %>€</p>
+          <p> Description : <%= @room.description %></p>
+          <% unless @user == @room.user %>
+            <%= link_to 'Book for one day or more', new_room_booking_path(@room), data: { turbo_frame: 'modal' }, class:"btn btn-light"  %>
+          <% else %>
+            <%= link_to 'Return on dashboard for edit', dashboard_path(@user), class:"btn btn-light"  %>
+          <% end %>
+         </div>
+        </div>
+       <div class="calendar"></div>
+      </div>
+      <div id="map">
+                  <!-- Display the map in this div -->
+      </div>
+</div>
 </div>

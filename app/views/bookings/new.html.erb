@@ -1,12 +1,13 @@
-<h1>Votre demande de réservation</h1>
-
-<%= @bookings %>
-
-
-<div class="booking">
-  <%= simple_form_for [@room, @booking] do |f| %>
-    <%= f.input :start_date, as: :date %>
-    <%= f.input :end_date, as: :date %>
-    <%= f.submit %>
+<%= turbo_frame_tag "modal" do %>
+  <%= tag.div data: { controller: "turbo-modal" }, style: "padding: 30px;" do %>
+    <div class="booking">
+     <h1>Votre demande de réservation</h1>
+       <%= simple_form_for [@room, @booking], html: { data: { controller: 'flatpickr', flatpickr_url_value: room_api_path(@room)} } do |f| %>
+       <%= f.input :start_date, as: :string, input_html: { data: { flatpickr_target: "startTime" } } %>
+       <%= f.input :end_date, as: :string, input_html: { data: { flatpickr_target: "endTime" }, id: 'end_time' } %>
+       <%= f.submit %>
+       <%= button_tag "Close", data: { action: "turbo-modal#hideModal" }, type: "button", class: "back_btn" %>
+        <% end %>
+    </div>
   <% end %>
-</div>
+<% end %>

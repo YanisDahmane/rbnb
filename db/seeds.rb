@@ -2,7 +2,11 @@ require 'faker'
 require 'json'
 require 'open-uri'
 
+<<<<<<< HEAD
 @number_creation = 5000
+=======
+@number_creation = 100
+>>>>>>> 2d99b49421d2bac0dc09ad8fdcc4db737153e4dd
 
 @all_categories = %w[Dentist Doctor Nurse Psychologist Chiropractor]
 

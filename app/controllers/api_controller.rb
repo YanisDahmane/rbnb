@@ -27,6 +27,7 @@ class ApiController < ApplicationController
     @result = {}
     @result[:html] = render_to_string(partial: "pages/room", locals: { room: @room })
     @result[:info] = @room
+    @result[:booked] = getbooked(@room)
     @result[:category] = @room.category.name
     @result[:address] = @room.address
     @result[:bookings] = Booking.where(room: @room)
@@ -46,5 +47,17 @@ class ApiController < ApplicationController
       @result[room.id][:bookings] = Booking.where(room: room)
     end
     @result
+  end
+
+  def getbooked(room)
+    result = []
+    room.bookings.each do |booking|
+      if booking.confirmed == 1
+        booking.start_date.upto(booking.end_date) do |date|
+          result << date
+        end
+      end
+    end
+    result
   end
 end

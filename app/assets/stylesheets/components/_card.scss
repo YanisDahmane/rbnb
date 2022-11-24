@@ -1,8 +1,9 @@
 .card-img-top {
   background-color: #fae1df52;
-  margin: 8px;
-  flex-wrap: wrap;
-  width: 30%;
+  height: 70%;
+  object-fit: cover;
+  margin: auto;
+  position: relative;
 }
 
 .booking-card {
@@ -11,6 +12,7 @@
   border: 1px solid #00000033;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.37);
   border-radius: 8px;
+  background-color: #ffffff8f;
 }
 
 .booking-card-content {
@@ -20,8 +22,16 @@
   margin-left: 30px;
 }
 
+.booking-card-img {
+  width: 40%;
+  margin: 8px;
+  border-radius: 8px;
+}
+
 .card-room {
-  width: 28vw;
+  position: relative;
+  height: 400px;
+  width: 500px;
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -31,7 +41,7 @@
 }
 
 .card-room > img {
-  height: 200px;
+  height: 76%;
   width: 100%;
   object-fit: cover;
   margin: auto;
@@ -72,7 +82,13 @@
   flex-wrap: wrap;
   min-height: 100v;
   justify-content: center;
-  gap: 16px;
+  gap: 48px;
+}
+
+.card-room-pricing {
+  position: absolute;
+  bottom: 0;
+  right: 16px;
 }
 
 #map {
@@ -84,10 +100,13 @@
 
 
 .cancel-btn {
-  background-color: rgba(90, 5, 5, 0.556);
+  background-color: #00646640;
   border-radius: 16px;
   font-weight: bold;
   border-radius: 18px;
+  position: absolute;
+  top: 10px;
+  right: 12px;
 }
 
 .card-footer {

@@ -1,0 +1,15 @@
+#modal {
+  position: absolute;
+  z-index: 2;
+  // right: 10px;
+  // top: 10px;
+  word-break: break-word;
+  border-radius: 6px;
+  left: 50vh;
+  background-color: rgba(0, 0, 0, 0.841);
+  color: white;
+}
+
+#modal-backdrop{
+  position: relative;
+}
