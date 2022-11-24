@@ -30,6 +30,12 @@ def generate()
     generate()
 end
 
+def getRandImage()
+  url = "https://www.bing.com/images/search?sp=-1&ghc=1&pq=cabinet+medical+jolie&sc=10-21&cvid=B513604FEC5E43928AEDF3A00547B903&ghsh=0&ghacc=0&tsc=ImageHoverTitle&cw=1440&ch=793&q=cabinet+medical+jolie&qft=+filterui:photo-photo+filterui:imagesize-wallpaper&form=IRFLTR&first=1"
+  doc = Nokogiri::HTML(URI.open(url))
+  doc.css('img').select { |link| link['src'].nil? == false && link['src'].include?("https://") }.map { |link| link['src'] }.sample
+end
+
 ## Seeds
 
 p "Resetting database..."
@@ -70,6 +76,7 @@ puts @g_address
 puts @g_categories
 
 @number_creation.times do
+  image_url = getRandImage
   @g_rooms << Room.create!(
     name: Faker::Lorem.word,
     size: rand(1..100),
@@ -78,7 +85,7 @@ puts @g_categories
     user_id: @g_users.sample.id,
     address_id: @g_address.sample.id,
     price: rand(1..1000),
-    image_url: Faker::Avatar.image
+    image_url: image_url
   )
 end
 # Creating template

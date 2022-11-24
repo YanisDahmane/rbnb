@@ -1,7 +1,7 @@
 
 <%= link_to room_path(room) do%>
   <div class="card-room">
-  <img class="card-img-top" src="<%= room.photo.attached? ? cl_image_path(room.photo.key, height: 300, width: 400, crop: :fill) : asset_path('cabinet-medical.webp')%>" alt="">
+  <img class="card-img-top" src="<%= room.photo.attached? ? cl_image_path(room.photo.key, height: 300, width: 400, crop: :fill) : room.image_url%>" alt="">
     <div class="card-room-infos">
       <div>
       <h5 class="card-title"><%= room.name %></h5>
