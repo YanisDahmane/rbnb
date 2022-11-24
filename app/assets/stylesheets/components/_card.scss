@@ -87,8 +87,8 @@
 
 .card-room-pricing {
   position: absolute;
-  bottom: 4px;
-  right: 8px;
+  bottom: 0;
+  right: 16px;
 }
 
 #map {
@@ -104,6 +104,9 @@
   border-radius: 16px;
   font-weight: bold;
   border-radius: 18px;
+  position: absolute;
+  top: 10px;
+  right: 12px;
 }
 
 .card-footer {
