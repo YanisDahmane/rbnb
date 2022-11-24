@@ -12,7 +12,7 @@
       <p> Categorie : <%= @room.category.name %></p>
       <p> Prix : <%= @room.price %>€</p>
       <p> Description : <%= @room.description %></p>
-      <%= link_to 'Book for one day or more', new_room_booking_path(@room), class:"btn btn-light"  %>
+      <%= link_to 'Book for one day or more', new_room_booking_path(@room), data: { turbo_frame: 'modal' }, class:"btn btn-light"  %>
     </div>
   </div>
 
