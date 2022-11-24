@@ -15,9 +15,9 @@ Rails.application.routes.draw do
   get "/api/:id", to: "api#rooms", as: :room_api
   get "/api", to: "api#all", as: :rooms_api
 
-
-  resources :rooms, only: %i[show new create] do
+  resources :rooms, only: %i[show new create destroy] do
     resources :address, only: %i[new]
     resources :bookings, only: %i[new create]
   end
+  resources :bookings, only: [:destroy]
 end

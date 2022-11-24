@@ -82,3 +82,19 @@
   margin: 32px;
   text-align: center;
 }
+
+
+.cancel-btn {
+  background-color: rgba(90, 5, 5, 0.556);
+  border-radius: 16px;
+  font-weight: bold;
+  border-radius: 18px;
+}
+
+.card-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 58px;
+  gap: 8px;
+}
