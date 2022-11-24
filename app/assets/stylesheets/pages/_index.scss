@@ -21,6 +21,16 @@ a {
   font-weight: bolder;
   text-align: center;
   gap: 16px;
+
+  p {
+    margin-top: 16px;
+    font-weight: 400;
+  }
+
+  .dash-card {
+    align-items: center;
+    color: $duck-green-light;
+  }
 }
 
 .dashboard-container > h2 {
