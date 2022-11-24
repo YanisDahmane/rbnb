@@ -6,7 +6,7 @@
 <div class="container">
 <h1><%= @room.name %></h1>
   <div class="booking-card">
-    <img class="card-img-top" src="<%= @room.photo.attached? ? cl_image_path(@room.photo.key, height: 300, width: 400, crop: :fill) : asset_path('cabinet-medical.webp')%>" alt="">
+    <img class="card-img-top" src="<%= @room.photo.attached? ? cl_image_path(@room.photo.key, height: 300, width: 400, crop: :fill) : @room.image_url%>" alt="">
     <div class="booking-card-content">
       <p> Superficie : <%= @room.size %>m2</p>
       <p> Categorie : <%= @room.category.name %></p>

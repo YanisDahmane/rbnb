@@ -29,10 +29,9 @@ a {
   font-family: 'Nunito';
 }
 
-
-.container > h1 {
+#browse_title {
   text-align: center;
   margin-top: 32px;
-  font-weight: 600;
-
+  font-weight: 200;
+  color: $prussian-blue;
 }

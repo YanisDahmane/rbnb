@@ -1,3 +1,6 @@
+require 'json'
+require 'open-uri'
+
 class RoomsController < ApplicationController
   before_action :set_room, only: %i[show edit update destroy]
 
@@ -14,11 +17,23 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(room_params)
     @room.user = current_user
-    if @room.save
+    if @room.save!
+      address = "#{@room.address.number} #{@room.address.road} #{@room.address.city} #{@room.address.country} #{@room.address.zip_code}"
+      result = JSON.load(URI("https://api-adresse.data.gouv.fr/search/?q=#{address.gsub(" ", "+")}"))
+      @room.address.coo_gps_long = result["features"][0]["geometry"]["coordinates"][0]
+      @room.address.coo_gps_lat = result["features"][0]["geometry"]["coordinates"][1]
       redirect_to root_path(@room)
+      sleep(4)
+      @room.save
+      p "ok"
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @room.destroy
+    redirect_to dashboard_path, status: :see_other
   end
 
   private

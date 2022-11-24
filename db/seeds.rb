@@ -23,9 +23,17 @@ def generate()
     r[:city] = result["features"][0]["properties"]["city"]
     r[:country] = "France"
     r[:zip_code] = result["features"][0]["properties"]["postcode"]
+    r[:coo_gps_long] = result["features"][0]["geometry"]["coordinates"][0]
+    r[:coo_gps_lat] = result["features"][0]["geometry"]["coordinates"][1]
     return r
   end
     generate()
+end
+
+def getRandImage()
+  url = "https://www.bing.com/images/search?sp=-1&ghc=1&pq=cabinet+medical+jolie&sc=10-21&cvid=B513604FEC5E43928AEDF3A00547B903&ghsh=0&ghacc=0&tsc=ImageHoverTitle&cw=1440&ch=793&q=cabinet+medical+jolie&qft=+filterui:photo-photo+filterui:imagesize-wallpaper&form=IRFLTR&first=1"
+  doc = Nokogiri::HTML(URI.open(url))
+  doc.css('img').select { |link| link['src'].nil? == false && link['src'].include?("https://") }.map { |link| link['src'] }.sample
 end
 
 ## Seeds
@@ -68,7 +76,17 @@ puts @g_address
 puts @g_categories
 
 @number_creation.times do
-  @g_rooms << Room.create!(name: Faker::Lorem.word, size: rand(1..100), category: @g_categories.sample, description: Faker::Lorem.paragraph, user_id: @g_users.sample.id, address_id: @g_address.sample.id, price: rand(1..1000), image_url: Faker::Avatar.image)
+  image_url = getRandImage
+  @g_rooms << Room.create!(
+    name: Faker::Lorem.word,
+    size: rand(1..100),
+    category: @g_categories.sample,
+    description: Faker::Lorem.paragraph,
+    user_id: @g_users.sample.id,
+    address_id: @g_address.sample.id,
+    price: rand(1..1000),
+    image_url: image_url
+  )
 end
 # Creating template
 p "Rooms created!"

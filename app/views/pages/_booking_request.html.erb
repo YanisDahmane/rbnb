@@ -16,7 +16,12 @@
       <% else %>
         Validé
       <% end %>
-    </small>
+      </small>
+      <%= link_to booking_path(book), class:"btn  cancel-btn",
+        data: {turbo_method: :delete, turbo_confirm: "Etes-vous certains de vouloir vous passer de cette
+        incroyable expérience?"} do %>
+        <p>Annuler</p>
+      <% end %>
     </div>
   </div>
 </div>
