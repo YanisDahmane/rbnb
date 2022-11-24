@@ -7,6 +7,9 @@ import { application } from "./application"
 import BannerController from "./banner_controller"
 application.register("banner", BannerController)
 
+import FlatpickrController from "./flatpickr_controller"
+application.register("flatpickr", FlatpickrController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
@@ -14,7 +17,7 @@ import MapController from "./map_controller"
 application.register("map", MapController)
 
 import RoomsController from "./rooms_controller"
-import SearchController from "./search_controller"
-
 application.register("rooms", RoomsController)
+
+import SearchController from "./search_controller"
 application.register("search", SearchController)
