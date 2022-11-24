@@ -23,6 +23,8 @@ def generate()
     r[:city] = result["features"][0]["properties"]["city"]
     r[:country] = "France"
     r[:zip_code] = result["features"][0]["properties"]["postcode"]
+    r[:coo_gps_long] = result["features"][0]["geometry"]["coordinates"][0]
+    r[:coo_gps_lat] = result["features"][0]["geometry"]["coordinates"][1]
     return r
   end
     generate()
@@ -68,7 +70,16 @@ puts @g_address
 puts @g_categories
 
 @number_creation.times do
-  @g_rooms << Room.create!(name: Faker::Lorem.word, size: rand(1..100), category: @g_categories.sample, description: Faker::Lorem.paragraph, user_id: @g_users.sample.id, address_id: @g_address.sample.id, price: rand(1..1000), image_url: Faker::Avatar.image)
+  @g_rooms << Room.create!(
+    name: Faker::Lorem.word,
+    size: rand(1..100),
+    category: @g_categories.sample,
+    description: Faker::Lorem.paragraph,
+    user_id: @g_users.sample.id,
+    address_id: @g_address.sample.id,
+    price: rand(1..1000),
+    image_url: Faker::Avatar.image
+  )
 end
 # Creating template
 p "Rooms created!"

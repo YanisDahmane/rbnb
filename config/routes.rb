@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   get "dashboard", to: "pages#dashboard"
+  get "map", to: "pages#map"
 
   get "/booking/:booking_id/confirm", to: "bookings#confirm", as: :confirm_booking
   get "/booking/:booking_id/decline", to: "bookings#decline", as: :decline_booking
