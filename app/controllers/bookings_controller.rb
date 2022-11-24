@@ -13,7 +13,7 @@ class BookingsController < ApplicationController
     @room = Room.find(params[:room_id])
     @booking.user = current_user
     @booking.room = @room
-    if disponible?(@room, @booking.start_date, @booking.end_date)
+    if disponible?(@booking)
       @booking.save
       redirect_to dashboard_path
     else
@@ -45,10 +45,10 @@ class BookingsController < ApplicationController
     params.require(:booking).permit(:start_date, :end_date, :room_id)
   end
 
-  def disponible?(room, start_date, end_date)
+  def disponible?(bookings_attemp)
     @bookings = Booking.where(room_id: params[:room_id])
     @bookings.each do |booking|
-      return false if booking.start_date <= params[:start_date] && booking.end_date >= params[:end_date]
+      return false if booking.start_date <= bookings_attemp.start_date && booking.end_date >= bookings_attemp.end_date
     end
     true
   end
