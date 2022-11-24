@@ -6,13 +6,13 @@
 <div class="container">
 <h1><%= @room.name %></h1>
   <div class="booking-card">
-    <img class="card-img-top" src="<%= @room.photo.attached? ? cl_image_path(@room.photo.key, height: 300, width: 400, crop: :fill) : @room.image_url%>" alt="">
+    <img class="booking-card-img " src="<%= @room.photo.attached? ? cl_image_path(@room.photo.key, height: 300, width: 400, crop: :fill) : @room.image_url%>" alt="">
     <div class="booking-card-content">
       <p> Superficie : <%= @room.size %>m2</p>
       <p> Categorie : <%= @room.category.name %></p>
       <p> Prix : <%= @room.price %>€</p>
       <p> Description : <%= @room.description %></p>
-      <%= link_to 'Book for one hour or more', new_room_booking_path(@room), class:"btn btn-light"  %>
+      <%= link_to 'Book for one day or more', new_room_booking_path(@room), class:"btn btn-light"  %>
     </div>
   </div>
 
