@@ -1,8 +1,5 @@
 <!-- voir a quoi sert le remote true-->
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css" rel="stylesheet">
-<link href="hello.week.min.css" rel="stylesheet" />
-<link href="hello.week.theme.min.css" rel="stylesheet" />
-
 <div data-controller="rooms" data-rooms-url-value="<%= room_api_path(@room) %>">
   <div class="container">
     <h1><%= @room.name %></h1>
@@ -14,7 +11,7 @@
           <p> Prix : <%= @room.price %>€</p>
           <p> Description : <%= @room.description %></p>
           <% unless @user == @room.user %>
-            <%= link_to 'Book for one hour or more', new_room_booking_path(@room), class:"btn btn-light"  %>
+            <%= link_to 'Book for one day or more', new_room_booking_path(@room), data: { turbo_frame: 'modal' }, class:"btn btn-light"  %>
           <% else %>
             <%= link_to 'Return on dashboard for edit', dashboard_path(@user), class:"btn btn-light"  %>
           <% end %>
