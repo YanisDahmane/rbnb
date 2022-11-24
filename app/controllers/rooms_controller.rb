@@ -17,7 +17,7 @@ class RoomsController < ApplicationController
     if @room.save
       redirect_to root_path(@room)
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
