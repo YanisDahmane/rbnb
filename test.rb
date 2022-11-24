@@ -1,26 +1,9 @@
-require 'Faker'
-require 'JSON'
 require 'open-uri'
+require 'net/http'
+require 'nokogiri'
 
-@all = []
+url = "https://www.bing.com/images/search?q=cabinet+medical&form=HDRSC2&first=1&tsc=ImageHoverTitle&cw=1177&ch=793"
 
-def generate()
-  name = Faker::Name.name
-  result = JSON.load(URI("https://api-adresse.data.gouv.fr/search/?q=#{name}+France"))
-  if(result["features"].size > 1)
-    r = {}
-    r[:number] = result["features"][0]["properties"]["context"].split(",")[0]
-    r[:road] = result["features"][0]["properties"]["name"]
-    r[:city] = result["features"][0]["properties"]["city"]
-    r[:country] = "France"
-    r[:zip_code] = result["features"][0]["properties"]["postcode"]
-    return r
-  end
-    generate()
-end
+doc = Nokogiri::HTML(URI.open(url))
 
-10.times do
-  p generate()
-end
-
-puts @all
+puts doc.css('img').select { |link| link['src'].nil? == false && link['src'].include?("https://") }.map { |link| link['src'] }.sample
