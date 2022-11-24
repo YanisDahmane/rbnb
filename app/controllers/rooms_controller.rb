@@ -31,6 +31,11 @@ class RoomsController < ApplicationController
     end
   end
 
+  def destroy
+    @room.destroy
+    redirect_to dashboard_path, status: :see_other
+  end
+
   private
 
   def room_params
