@@ -10,6 +10,9 @@ application.register("banner", BannerController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import MapController from "./map_controller"
+application.register("map", MapController)
+
 import RoomsController from "./rooms_controller"
 import SearchController from "./search_controller"
 
