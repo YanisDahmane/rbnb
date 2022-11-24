@@ -9,7 +9,7 @@ export default class extends Controller {
   static allRoomApi;
 
   connect() {
-    console.log("Hello from Stimdudlus!");
+    console.log("Hello from Stimddddudlus!");
     fetch("http://localhost:3000/api")
     .then(response => response.json()
     .then(data => {this.allRoomdata = data; this.showMap()}));
@@ -24,6 +24,9 @@ export default class extends Controller {
       center: [2.213749, 46.227638],
       zoom: 5
     });
+    const nav = new mapboxgl.NavigationControl();
+    map.addControl(nav, 'top-left');
+    map.scrollZoom.disable();
     fetch("http://localhost:3000/api")
       .then(response => response.json()
       .then(data => {this.showAllPoint(map)}));

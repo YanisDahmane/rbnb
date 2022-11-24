@@ -3,6 +3,7 @@
   height: 70%;
   object-fit: cover;
   margin: auto;
+  position: relative;
 }
 
 .booking-card {
@@ -28,8 +29,9 @@
 }
 
 .card-room {
-  height: 300px;
-  width: 400px;
+  position: relative;
+  height: 400px;
+  width: 500px;
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -39,7 +41,7 @@
 }
 
 .card-room > img {
-  height: 200px;
+  height: 76%;
   width: 100%;
   object-fit: cover;
   margin: auto;
@@ -80,7 +82,13 @@
   flex-wrap: wrap;
   min-height: 100v;
   justify-content: center;
-  gap: 16px;
+  gap: 48px;
+}
+
+.card-room-pricing {
+  position: absolute;
+  bottom: 4px;
+  right: 8px;
 }
 
 #map {

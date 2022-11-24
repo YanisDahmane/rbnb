@@ -5,12 +5,13 @@ const api = "pk.eyJ1IjoiZmZyY2giLCJhIjoiY2xhMmljeHZ4MGV4cTNvbXpyZWxqMmhyZiJ9.D1i
 
 
 export default class extends Controller {
+
   static values = {
     url: String
   }
 
   connect() {
-    console.log("Hello from Stimdulus!");
+    console.log("Hello from Stidddmdulus!");
     this.fetchInfoRoom();
   }
 
@@ -23,6 +24,9 @@ export default class extends Controller {
       center: data,
       zoom: 12
     });
+    const nav = new mapboxgl.NavigationControl();
+    map.addControl(nav, 'top-left');
+    map.scrollZoom.disable();
     new mapboxgl.Marker()
       .setLngLat(data)
       .addTo(map);
