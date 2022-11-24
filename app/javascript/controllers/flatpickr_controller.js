@@ -24,6 +24,7 @@ export default class extends Controller {
   fetchUnavailableDates(booked) {
     flatpickr(this.startTimeTarget, {
       enableTime: true,
+      minDate: "today",
       disable: booked,
       // Provide an id for the plugin to work
       plugins: [new rangePlugin({ input: "#end_time"})]})
