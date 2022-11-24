@@ -1,3 +1,10 @@
+.fa-glasses {
+  color: white;
+  margin-right: 16px;
+  margin-left: 16px;
+  margin-bottom: 0;
+}
+
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
@@ -9,4 +16,13 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+}
+
+#search_nav {
+  justify-content: center
+}
+
+.navbar-form {
+  width: 32%;
+  margin: 8px;
 }
