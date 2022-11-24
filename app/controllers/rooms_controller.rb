@@ -27,7 +27,7 @@ class RoomsController < ApplicationController
       @room.save
       p "ok"
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

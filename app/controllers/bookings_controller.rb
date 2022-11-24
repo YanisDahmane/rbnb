@@ -21,6 +21,12 @@ class BookingsController < ApplicationController
     end
   end
 
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    redirect_to dashboard_path, status: :see_other
+  end
+
   def confirm
     @booking = Booking.find(params[:booking_id])
     @booking.update(confirmed: 1)
@@ -39,7 +45,7 @@ class BookingsController < ApplicationController
     params.require(:booking).permit(:start_date, :end_date, :room_id)
   end
 
-  def disponible?
+  def disponible?(room, start_date, end_date)
     @bookings = Booking.where(room_id: params[:room_id])
     @bookings.each do |booking|
       return false if booking.start_date <= params[:start_date] && booking.end_date >= params[:end_date]
