@@ -4,7 +4,7 @@
     <h2>Mes locaux</h2>
     <div class="card-deck" style="display:flex">
       <% @rooms.each do |room| %>
-        <%= render "room", room: room %>
+        <%= render "dashboard_room", room: room %>
       <% end %>
     </div>
   </div>
