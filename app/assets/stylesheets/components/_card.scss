@@ -99,3 +99,15 @@
   right: 8px;
   top: 4px;
 }
+
+.message-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+
+  p {
+    margin: 0;
+  }
+}

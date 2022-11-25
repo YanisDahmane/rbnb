@@ -3,7 +3,7 @@
   <div class="dashboard-container">
     <h2>Mes locaux</h2>
       <% if @rooms.size == 0 %>
-        <div class="dash-card" style="display:flex">
+        <div class="message-card">
           <p>You have no room yet ...</p>
           <i class="fa-solid fa-face-sad-cry"></i>
         </div>
@@ -20,8 +20,8 @@
 
   <div class="dashboard-container">
     <h2>Mes réservations</h2>
-      <% if @bookings_request.nil? %>
-        <div class="dash-card" style="display:flex">
+      <% if @bookings_request.empty? %>
+        <div class="message-card">
           <p>You have no bookings request at the moment ...</p>
           <i class="fa-solid fa-face-sad-cry"></i>
         </div>
@@ -39,7 +39,7 @@
   <div class="dashboard-container">
     <h2>Mes demandes de location</h2>
       <% if @bookings.size == 0 %>
-          <div class="dash-card" style="display:flex">
+          <div class="message-card">
             <p>You have no bookings yet ...</p>
             <i class="fa-solid fa-face-sad-cry"></i>
           </div>
