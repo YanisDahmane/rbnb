@@ -34,7 +34,7 @@ export default class extends Controller {
 
   showAllPoint(map) {
     for (const [key, value] of Object.entries(this.allRoomdata)) {
-      new mapboxgl.Marker().setLngLat([value["address"]["coo_gps_long"], value["address"]["coo_gps_lat"]]).addTo(map);
+      new mapboxgl.Marker().setLngLat([value["address"]["coo_gps_long"], value["address"]["coo_gps_lat"]]).setPopup(new mapboxgl.Popup().setHTML(value["html"])).addTo(map);
     }
   }
 }
