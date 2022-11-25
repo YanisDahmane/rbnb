@@ -5,3 +5,24 @@
   color: white;
   background-color: #113039;
 }
+
+.cancel-btn {
+  background-color: #006466d1;
+  border-radius: 16px;
+  font-weight: bold;
+  border-radius: 18px;
+  position: absolute;
+  top: -288px;
+  right: 8px;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #00646640;
+  border-radius: 16px;
+  font-weight: bold;
+  border-radius: 18px;
+  position: absolute;
+  bottom: 40px;
+  right: 8px;
+}

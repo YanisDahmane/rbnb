@@ -8,7 +8,7 @@
       </div>
       <h2 class="card-room-pricing"><%= room.price %>€/jour</h2>
 
-      <%= link_to room_path(room), class:"btn  cancel-btn",
+      <%= link_to room_path(room), class:"btn  delete-btn",
               data: {turbo_method: :delete, turbo_confirm: "Etes-vous certains de vouloir retirer cette incroyable expérience?"} do %>
               <i class="fa-solid fa-skull-crossbones"></i>
             <% end %>
