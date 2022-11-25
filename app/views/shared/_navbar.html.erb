@@ -12,6 +12,7 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
+            <a class = "modal-btn button modal-trigger" id="light-green-button">Contact</a>
             <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">

@@ -30,3 +30,19 @@
   width: 32%;
   margin: 8px;
 }
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 160px;
+}
+
+#navbarDropdown {
+  position: absolute;
+  right: 10px;
+}
+
+#navbarSupportedContent {
+  position:relative;
+}

@@ -1,8 +1,8 @@
 #modal {
   position: absolute;
   z-index: 2;
-  // right: 10px;
-  // top: 10px;
+  top: 40%; // permet de bien position la fenêtre
+  left: 50%;
   word-break: break-word;
   border-radius: 6px;
   left: 50vh;
@@ -12,4 +12,95 @@
 
 #modal-backdrop{
   position: relative;
+}
+
+.modal-container {
+  // display: none; // ne s'affiche pas si la classe n'est pas active
+  visibility: hidden; // même fonctionnalité que display mais permet d'utiliser les fonctionnalités de transition
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  transition: visibility 0.4s; // on ne met pas 0s pour avoir le temps de visualiser l'animation
+  z-index: 1;
+}
+
+.modal-container.active {
+  // display: block; // .active permet de faire s'afficher la page lorqu'elle est active
+  visibility: visible;
+  transition: visibility 0s;
+}
+
+.overlay {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #333333d3;
+  transition: opacity 0.4s 0.2s ease-out;
+
+}
+
+.modal-container.active .overlay {
+  opacity: 1; // quand la classe modal-container sera active alors l'overlay aura une opacité de 1
+  transition: opacity 0.4s ease-out;
+}
+
+.modal1 {
+  opacity: 0;
+  width: 95%;
+  max-width: 500px;
+  min-width: 300px;
+  padding: 30px;
+  background: #006466d6;
+  border-radius: 5px;
+  position: absolute;
+  top: 40%; // permet de bien position la fenêtre
+  left: 50%;
+  transform: translate(-50%, calc(-50% - 50px)); // permet de centrer le contenu
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+
+  h1 {
+    margin-bottom: 10px;
+    font-family: initial;
+    font-weight: 500;
+    color: white;
+  }
+
+  p {
+    line-height: 1.4;
+    margin-bottom: 5px;
+    color: white;
+  }
+}
+
+.modal-container.active .modal1 {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.4s 0.2s ease-out, transform 0.4s 0.2s ease-out;
+}
+
+.close-modal {
+  padding: 8px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  background: #ff365e;
+  color: #fff;
+
+}
+
+// Modal_form
+
+.modal-form-content {
+  display: grid;
+  color:white;
+}
+
+.modal-btn.button.modal-trigger {
+  cursor: help;
 }
