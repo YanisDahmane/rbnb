@@ -10,11 +10,14 @@
   background-color: #006466d1;
   border-radius: 16px;
   font-weight: bold;
-  border-radius: 18px;
   position: absolute;
-  top: -288px;
+  top: 8px;
   right: 8px;
-  color: white;
+  color: #d0d0d0;
+
+  p {
+    margin: 0;
+  }
 }
 
 .delete-btn {

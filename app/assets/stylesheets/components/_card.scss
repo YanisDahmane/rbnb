@@ -30,8 +30,6 @@
 
 .card-room {
   position: relative;
-  height: 400px;
-  width: 500px;
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -41,10 +39,9 @@
 }
 
 .card-room > img {
-  height: 76%;
-  width: 100%;
   object-fit: cover;
-  margin: auto;
+  width: 460px;
+  height: 260px;
 }
 
 .card-room h2 {
@@ -61,7 +58,7 @@
 
 
 .card-room .card-room-infos {
-  padding: 16px;
+  padding: 8px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -82,11 +79,10 @@
   flex-wrap: wrap;
   min-height: 100v;
   justify-content: center;
-  gap: 48px;
+  gap: 40px;
 }
 
 .card-room-pricing {
-  position: absolute;
   bottom: 0;
   right: 16px;
 }
@@ -99,10 +95,7 @@
 }
 
 .card-footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 58px;
-  gap: 8px;
-
+  position: absolute;
+  right: 8px;
+  top: 4px;
 }
