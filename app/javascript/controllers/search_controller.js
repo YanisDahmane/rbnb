@@ -8,7 +8,7 @@ export default class extends Controller {
 
   connect() {
     // Récupération de toutes les rooms de l'api
-    fetch("http://localhost:3000/api")
+    fetch("/api")
       .then(response => response.json()
       // On stocke les rooms dans une variable
       .then(data => {this.allRoomdata = data}));
@@ -16,7 +16,7 @@ export default class extends Controller {
 
   find(event){
     // Création d'une requête pour récupérer les rooms correspondantes aux recherches
-    fetch("http://localhost:3000/api?g=" + this.getRequest())
+    fetch("/api?g=" + this.getRequest())
       .then(response => response.json()
       .then(data => {
         // Suppression des rooms affichées
