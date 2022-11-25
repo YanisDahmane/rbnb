@@ -37,17 +37,44 @@ class ApiController < ApplicationController
   def create_all_json
     @rooms = Room.all
     @result = {}
+    # Localisation params["city"]=
+    # Prix range  params["prix]"=[min,max]
+    # Category params["category"]=
+    # Recherche globale (inclus les mots clés)
+    count = 0
     @rooms.each do |room|
-      @room = Room.find(room.id)
-      @result[room.id] = {}
-      @result[room.id][:html] = render_to_string(partial: "pages/room", locals: { room: @room })
-      @result[room.id][:info] = room
-      @result[room.id][:category] = room.category.name
-      @result[room.id][:address] = room.address
-      @result[room.id][:bookings] = Booking.where(room: room)
+      if testRoom(room)
+        addRoom(room)
+        count += 1
+      end
     end
     @result
   end
+
+  def addRoom(room)
+    @result[room.id] = {}
+    @result[room.id][:html] = render_to_string(partial: "pages/room", locals: { room: room })
+    @result[room.id][:info] = room
+    @result[room.id][:category] = room.category.name
+    @result[room.id][:address] = room.address
+    @result[room.id][:bookings] = Booking.where(room: room)
+  end
+
+  def testRoom(room)
+    return false if params["city"] && params["city"].downcase != room.address.city.downcase
+    return false if params["category"] && params["category"] != room.category.name
+    return false if params["price_max"] && room.price > params["price_max"].to_i
+    return false if params["size_min"] && room.size < params["size_min"].to_i
+
+    if params["g"]
+      fullinfo = (room.name + room.description + room.category.name + room.address.city).downcase!;
+      params["g"].split(',').each do |word|
+        return false unless fullinfo.include?(word.downcase)
+      end
+    end
+    return true
+  end
+
 
   def getbooked(room)
     result = []

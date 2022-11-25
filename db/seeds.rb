@@ -2,15 +2,10 @@ require 'faker'
 require 'json'
 require 'open-uri'
 
-<<<<<<< HEAD
-@number_creation = 5000
-=======
-@number_creation = 100
->>>>>>> 2d99b49421d2bac0dc09ad8fdcc4db737153e4dd
+@number_creation = 50
 
 @all_categories = %w[Dentist Doctor Nurse Psychologist Chiropractor]
 
-@g_users = []
 @g_categories = []
 @g_address = []
 @g_rooms = []
@@ -80,11 +75,9 @@ end
 p "[Admin] Admin created!"
 
 
-p "Creating #{@number_creation} other users..."
-@number_creation.times do
-  @g_users << User.create!(email: Faker::Internet.email, password: "password")
-  p "Creating user #{@g_users.size} / #{@number_creation}..."
-end
+p "Creating 1 fake users..."
+@g_users = User.create!(email: Faker::Internet.email, password: "password")
+p "Creating user fake user..."
 
 p "Creating #{@number_creation} address..."
 @number_creation.times do
@@ -93,14 +86,14 @@ p "Creating #{@number_creation} address..."
 end
 
 p "Creating #{@number_creation} rooms"
-@g_address.each do
+@g_address.each do |address|
   @g_rooms << Room.create!(
     name: Faker::Artist.name,
     size: rand(1..100),
     category: @g_categories.sample,
     description: Faker::Lorem.paragraph,
-    user_id: @g_users.sample.id,
-    address_id: @g_address.sample.id,
+    user_id: @g_users.id,
+    address_id: address.id,
     price: rand(1..1000),
     image_url: getRandImage
   )
@@ -109,7 +102,7 @@ end
 # Creating template
 p "Rooms created!"
 @g_rooms.each do
-  Booking.create!(room_id: @g_rooms.sample.id, start_date: Date.today, end_date: Date.today + 1, user_id: @g_users.sample.id)
+  Booking.create!(room_id: @g_rooms.sample.id, start_date: Date.today, end_date: Date.today + 1, user_id: @g_users.id)
   p "Creating booking #{@g_rooms.size} / #{@number_creation}..."
 end
 p "Rooms created!"
