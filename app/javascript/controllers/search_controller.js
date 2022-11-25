@@ -10,6 +10,7 @@ export default class extends Controller {
     // Récupération de toutes les rooms de l'api
     fetch("http://localhost:3000/api")
       .then(response => response.json()
+      // On stocke les rooms dans une variable
       .then(data => {this.allRoomdata = data}));
   }
 
