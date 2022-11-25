@@ -40,7 +40,7 @@ end
 
 # Récupération d'une image aléatoire en scrappant
 def getRandImage()
-  url = "https://www.bing.com/images/search?sp=-1&ghc=1&pq=cabinet+medical+jolie&sc=10-21&cvid=B513604FEC5E43928AEDF3A00547B903&ghsh=0&ghacc=0&tsc=ImageHoverTitle&cw=1440&ch=793&q=cabinet+medical+jolie&qft=+filterui:imagesize-custom_1920_1080&form=IRFLTR&first=1"
+  url = "https://www.bing.com/images/search?q=medical%20office%20beautifull&qs=n&form=QBIR&qft=%20filterui%3Aimagesize-custom_1920_1080&sp=-1&ghc=1&pq=medical%20office%20beautifull&sc=0-25&cvid=6816B2E1E95340759C69931957F8573E&ghsh=0&ghacc=0&first=1&tsc=ImageHoverTitle"
   doc = Nokogiri::HTML(URI.open(url))
   img = doc.css('img').select { |link| link['src'].nil? == false && link['src'].include?("https://") }.map { |link| link['src'] }.sample
   # On supprime du lien les parametre de taille d'image pour récupere l'image en taille réelle
