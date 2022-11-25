@@ -3,7 +3,15 @@
     <h2><i class="fa-solid fa-glasses"></i></h2>
 		<form class="navbar-form form-inline">
 			<div class="input-group search-box">
-				<input data-search-target="find" data-action="keyup->search#find" type="text" id="search" class="form-control" placeholder="Recherche...">
+				<input data-search-target="g" data-action="keyup->search#find" type="text" id="search" class="form-control" placeholder="Recherche générale">
+        <input data-search-target="price_max" data-action="keyup->search#find" type="number" id="search" class="form-control" placeholder="Prix maximum">
+        <input data-search-target="size_min" data-action="keyup->search#find" type="number" id="search" class="form-control" placeholder="Taille minimum">
+        <select data-search-target="category" data-action="change->search#find" type="select" id="search" class="form-control" placeholder="Catégory">
+          <option valeur="All">All categories</option>
+          <% @categorys.each do |c| %>
+            <option valeur="<%= c.name %>"><%= c.name %></option>
+          <% end %>
+        </select>
 			</div>
 		</form>
     <h2><i class="fa-solid fa-glasses"></i></h2>
