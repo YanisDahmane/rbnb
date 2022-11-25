@@ -88,7 +88,7 @@ p "[Admin] Admin with template"
     name: Faker::Artist.name,
     size: rand(1..100),
     category: @g_categories.sample,
-    description: Faker::Lorem.paragraph,
+    description: getDescription,
     user_id: value[:user].id,
     address_id: value[:address].id,
     price: rand(1..1000), image_url: getRandImage
