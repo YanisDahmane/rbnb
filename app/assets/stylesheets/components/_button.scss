@@ -7,17 +7,23 @@
 }
 
 .cancel-btn {
-  background-color: #006466d1;
+  background-color: #006466ec;
   border-radius: 16px;
   font-weight: bold;
   position: absolute;
   top: 8px;
   right: 8px;
-  color: #d0d0d0;
+  color: black;
 
   p {
     margin: 0;
   }
+}
+
+.cancel-btn:hover {
+  background-color: #c70b0bd3;
+  color: white;
+  transition: 0.2s;
 }
 
 .delete-btn {
@@ -28,4 +34,28 @@
   position: absolute;
   bottom: 40px;
   right: 8px;
+}
+
+.btn-ok {
+  background-color: #009ea0c4;
+  border-radius: 4px;
+}
+
+.btn-ok:hover {
+  background-color: #009da0;
+  box-shadow: 2px 2px 2px 1px rgba(255, 255, 255, 0.418);
+  color: white;
+  transition: 0.2s;
+}
+
+.btn-no {
+  background-color: #743a84b8;
+  border-radius: 4px;
+}
+
+.btn-no:hover {
+  background-color: #743a84fc;
+  box-shadow: 2px 2px 2px 1px rgba(255, 255, 255, 0.418);
+  color: white;
+  transition: 0.2s;
 }
