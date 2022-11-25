@@ -1,5 +1,14 @@
 <div class="card-room">
-  <img class="card-img-top" src="<%= book.room.image_url %>" alt="Card image cap">
+
+  <div>
+    <img class="card-img-top" src="<%= book.room.image_url %>" alt="Card image cap">
+    <%= link_to booking_path(book), class:"btn  cancel-btn",
+          data: {turbo_method: :delete, turbo_confirm: "Etes-vous certains de vouloir vous passer de cette
+          incroyable expérience?"} do %>
+          <p>Annuler</p>
+        <% end %>
+  </div>
+
   <div class="card-room-infos">
     <div>
       <h5 class="card-title"><%= book.room.name %></h5>
@@ -10,18 +19,13 @@
       <small class="text-muted">
       <% if book.confirmed == 0 %>
         <div>
-          <%= link_to "Accepter", confirm_booking_path(book.id), class: "btn btn-success"%>
-          <%= link_to "Refuser", decline_booking_path(book.id), class: "btn btn-danger"%>
+          <%= link_to "Accepter", confirm_booking_path(book.id), class: "btn"%>
+          <%= link_to "Refuser", decline_booking_path(book.id), class: "btn"%>
         </div>
       <% else %>
         Validé
       <% end %>
       </small>
-      <%= link_to booking_path(book), class:"btn  cancel-btn",
-        data: {turbo_method: :delete, turbo_confirm: "Etes-vous certains de vouloir vous passer de cette
-        incroyable expérience?"} do %>
-        <p>Annuler</p>
-      <% end %>
     </div>
   </div>
 </div>
