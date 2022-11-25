@@ -38,7 +38,7 @@ export default class extends Controller {
   getRequest(){
     let result = "";
     if(this.gTarget.value != ""){
-      result += "&g=" + this.gTarget.value;
+      result += "&g=" + this.gTarget.value.replace(" ", ",");
     }
     if(this.price_maxTarget.value != ""){
       result += "&price_max=" + this.price_maxTarget.value;
