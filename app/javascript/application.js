@@ -4,10 +4,6 @@ import "./controllers"
 import "bootstrap"
 import "typed.js"
 
-// Entry point for the build script in your package.json
-
-
-
 document.addEventListener('turbo:load', () => {
   // Création du lien entre le bouton contact et son contenu
   const modalContainer = document. querySelector(".modal-container");// selectionne le premier élément avec pour classe .modal-container
@@ -18,6 +14,5 @@ document.addEventListener('turbo:load', () => {
 
   function toggleModal() {
     modalContainer.classList.toggle("active")
-
   }
 })
