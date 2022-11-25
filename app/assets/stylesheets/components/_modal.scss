@@ -1,7 +1,6 @@
 #modal {
   position: absolute;
   z-index: 2;
-  top: 40%; // permet de bien position la fenêtre
   left: 50%;
   word-break: break-word;
   border-radius: 6px;
@@ -11,7 +10,16 @@
 }
 
 #modal-backdrop{
-  position: relative;
+  // position: relative;
+  // visibility: hidden; // même fonctionnalité que display mais permet d'utiliser les fonctionnalités de transition
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  transition: visibility 0.4s; // on ne met pas 0s pour avoir le temps de visualiser l'animation
+  z-index: 1;
+  background-color: black;
+
 }
 
 .modal-container {
